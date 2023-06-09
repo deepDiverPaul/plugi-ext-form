@@ -2,7 +2,9 @@
 
 return [
     'title' => 'Form',
-    'backend' => true,
+    'author' => 'Paul Spenke',
+    'licence' => 'MIT',
+    'version' => '1.0.0',
     'settings' => [
          [
             'name' => 'email',
