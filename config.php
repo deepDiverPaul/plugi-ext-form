@@ -3,6 +3,7 @@
 return [
     'title' => 'Form',
     'author' => 'Paul Spenke',
+    'identifier' => 'form',
     'licence' => 'MIT',
     'version' => '1.0.0',
     'settings' => [
