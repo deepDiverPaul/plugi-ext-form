@@ -30,5 +30,15 @@ return [
             ],
             'uniqueKeys' => [],
         ],
+        'definitions' => [
+            'columns' => [
+                'name' => 'varchar(255) NOT NULL',
+                'fields' => 'longtext NOT NULL',
+                'finishers' => 'longtext NOT NULL',
+            ],
+            'uniqueKeys' => [
+                'name' => ['name']
+            ],
+        ],
     ]
 ];

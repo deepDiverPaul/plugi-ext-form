@@ -11,4 +11,3 @@ Extensions::registerBackend('form', [
     'include' => __DIR__ . '/admin/form.php',
     'icon' => '<i class="ph ph-paper-plane-tilt"></i>',
 ]);
-Extensions::registerAsset('/extensions/demo/dist/admin.css', 'style', 'admin-header');
