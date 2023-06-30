@@ -19,5 +19,16 @@ return [
             'default' =>  'true',
             'type' => 'toggle',
         ]
+    ],
+    'tables' => [
+        'entries' => [
+            'columns' => [
+                'name' => 'varchar(255) NOT NULL',
+                'email' => 'varchar(255) NOT NULL',
+                'meta' => 'mediumtext NOT NULL',
+                'message' => 'longtext NOT NULL',
+            ],
+            'uniqueKeys' => [],
+        ],
     ]
 ];
