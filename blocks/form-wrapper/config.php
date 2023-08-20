@@ -1,15 +1,26 @@
 <?php
 
+$formRepository = new \Plugi\Extensions\Form\DefinitionsRepository();
+$forms = $formRepository->getAll(['id', 'name']);
+
+$formOptions = [];
+foreach ($forms as $form) {
+    $formOptions[] = [
+        "id" => $form['id'],
+        "name" => $form['name']
+    ];
+}
+
 return [
     'title' => 'Form Wrapper',
     'category' => 'Form',
     'icon' => 'fa fa-hand-peace-o',
     'settings' => [
-        'height' => [
-            'label'=> 'Height',
-            'type' => 'text',
-            'placeholder' =>'auto',
-            'value' => 50
-        ]
+        "formId" => [
+            "type" => "select",
+            "label" => "Formular",
+            "value" => 0,
+            "options" => $formOptions
+        ],
     ]
 ];

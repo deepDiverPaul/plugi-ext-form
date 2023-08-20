@@ -1,38 +1,54 @@
-<div class="text-center text-2xl" x-data>
-    <?= phpb_e('Success!') ?>
-</div>
+<?php
+$modules = [
+    'listForms' => [
+        'include' => __DIR__ . '/Views/ListForms.php',
+        'label' => 'Formulare',
+        'showTabs' => true,
+        'inMenu' => true,
+    ],
+    'settings' => [
+        'include' => __DIR__ . '/Views/ExtSettings.php',
+        'label' => 'Einstellungen',
+        'showTabs' => true,
+        'inMenu' => true,
+    ],
+    'editForm' => [
+        'include' => __DIR__ . '/Views/EditForm.php',
+        'showTabs' => false,
+        'inMenu' => false,
+    ],
+    'listEntries' => [
+        'include' => __DIR__ . '/Views/ListEntries.php',
+        'showTabs' => false,
+        'inMenu' => false,
+    ],
+];
 
-<div class="">
+$activeModule = array_keys($modules)[0];
+if (isset($_GET['action']) && array_key_exists($_GET['action'], $modules)) $activeModule = $_GET['action'];
+
+?>
+<?php
+if ($modules[$activeModule]['showTabs'] === true):
+?>
+<div class="tabs mb-6">
+    <div class="border-b border-base-300 grow"></div>
     <?php
-    foreach (\Plugi\Extensions::getSettings('form') as $setting):
-        ?>
-        <?php
-        if ($setting['type'] === 'text'):
-            ?>
-            <div class="form-control w-full">
-                <label class="label">
-                    <span class="label-text"><?= phpb_e($setting['label'] ?: $setting['name']) ?></span>
-                </label>
-                <input type="text" name="<?= phpb_e($setting['key']) ?>" value="<?= phpb_e($setting['value']) ?>" class="input input-bordered w-full" />
-            </div>
-        <?php
-        endif;
-        ?>
-        <?php
-        if ($setting['type'] === 'toggle'):
-            ?>
-            <div class="form-control" x-data="{state: <?= phpb_e($setting['value']) ?>}">
-                <label class="label cursor-pointer">
-                    <span class="label-text"><?= phpb_e($setting['label'] ?: $setting['name']) ?></span>
-                    <input type='hidden' :value="state" name="<?= phpb_e($setting['key']) ?>">
-                    <input type="checkbox" class="toggle" x-model="state"   />
-                </label>
-            </div>
-        <?php
-        endif;
-        ?>
+    foreach ($modules as $name => $module):
+        if ($module['inMenu'] === false) continue;
+    ?>
+        <a class="tab tab-lifted <?= $name === $activeModule ? 'tab-active' : '' ?>" href="<?= phpb_url('website_manager', ['tab' => 'ext--form', 'action' => $name]) ?>"><?= $module['label'] ?></a>
     <?php
     endforeach;
+    ?>
+    <div class="border-b border-base-300 grow"></div>
+</div>
+<?php
+endif;
+?>
+<div class="w-full">
+    <?php
+    include $modules[$activeModule]['include'];
     ?>
 </div>
 

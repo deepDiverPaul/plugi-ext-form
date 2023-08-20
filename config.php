@@ -12,21 +12,14 @@ return [
             'label' => 'Email',
             'default' =>  'admin@example.com',
             'type' => 'text',
-        ],
-        [
-            'name' => 'emailEnabled',
-            'label' => 'Email is Enabled',
-            'default' =>  'true',
-            'type' => 'toggle',
         ]
     ],
     'tables' => [
         'entries' => [
             'columns' => [
-                'name' => 'varchar(255) NOT NULL',
-                'email' => 'varchar(255) NOT NULL',
-                'meta' => 'mediumtext NOT NULL',
-                'message' => 'longtext NOT NULL',
+                'formId' => 'int NOT NULL',
+                'data' => 'longtext NOT NULL',
+                'created' => 'timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP',
             ],
             'uniqueKeys' => [],
         ],
